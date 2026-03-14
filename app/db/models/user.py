@@ -13,10 +13,10 @@ class User(Base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
-    full_name = Column(String, nullable=False)
+    full_name = Column(String, nullable=True)
     email = Column(String, unique=True, index=True, nullable=False)
     phone = Column(String, nullable=True)
-    matricule = Column(String, unique=True, index=True, nullable=False)
+    matricule = Column(String, unique=True, index=True, nullable=True)
     department = Column(String, nullable=True)
     level = Column(String, nullable=True)
     hashed_password = Column(String, nullable=False)

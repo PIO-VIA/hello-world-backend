@@ -15,9 +15,10 @@ class AuthService:
         if user:
             raise AppException(message="The user with this email already exists in the system.", code="EMAIL_EXISTS")
         
-        user = UserRepository.get_by_matricule(db, matricule=user_in.matricule)
-        if user:
-            raise AppException(message="The user with this matricule already exists.", code="MATRICULE_EXISTS")
+        if user_in.matricule:
+            user = UserRepository.get_by_matricule(db, matricule=user_in.matricule)
+            if user:
+                raise AppException(message="The user with this matricule already exists.", code="MATRICULE_EXISTS")
             
         new_user = UserRepository.create(db, obj_in=user_in)
         auth_logger.info(f"New user registered: {new_user.email}")

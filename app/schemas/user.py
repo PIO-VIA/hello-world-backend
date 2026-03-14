@@ -18,8 +18,10 @@ class UserBase(BaseModel):
 # Properties to receive via API on creation
 class UserCreate(UserBase):
     email: EmailStr
-    full_name: str
-    matricule: str
+    password: str
+
+class SuperAdminCreate(BaseModel):
+    email: EmailStr
     password: str
 
 # Properties to receive via API on update
