@@ -22,6 +22,8 @@ class Settings(BaseSettings):
     @validator("DATABASE_URL", pre=True)
     def assemble_db_connection(cls, v: Optional[str], values: Dict[str, Any]) -> Any:
         if isinstance(v, str):
+            if v.startswith("postgres://"):
+                v = v.replace("postgres://", "postgresql://", 1)
             return v
         return PostgresDsn.build(
             scheme="postgresql",
